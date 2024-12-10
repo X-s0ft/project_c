@@ -21,5 +21,6 @@ flutter:
 
   fonts:
     - family: Ubuntu
+      fonts:
         - asset: lib/fonts/Ubuntu-Bold.ttf
         - asset: lib/fonts/Ubuntu-Regular.ttf
