@@ -17,3 +17,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+
+  fonts:
+    - family: Ubuntu
+        - asset: lib/fonts/Ubuntu-Bold.ttf
+        - asset: lib/fonts/Ubuntu-Regular.ttf
