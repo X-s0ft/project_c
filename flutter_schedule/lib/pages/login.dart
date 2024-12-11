@@ -11,11 +11,19 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-
     double screenW = MediaQuery.of(context).size.width;
     double screenH = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
+        title: const Text(
+          'Главная страница',
+          style: TextStyle(
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+      ),
       body: Align(
         alignment: Alignment.center,
         child: Column(
@@ -63,6 +71,27 @@ class _LoginState extends State<Login> {
                 TextButton(
                   onPressed: () => {dev.log('Войти')},
                   child: const Text('Войти'),
+                ),
+              ],
+            ),
+            SizedBox(height: screenH * 0.3,),
+            Wrap(
+              children: [
+                TextButton(
+                  onPressed: () => {Navigator.pushNamed(context, '/AddOrEdit')},
+                  child: const Text('Редактирование/Добавление расписания'),
+                ),
+                TextButton(
+                  onPressed: () => {Navigator.pushNamed(context, '/DateData')},
+                  child: const Text('Дата данные'),
+                ),
+                TextButton(
+                  onPressed: () => {Navigator.pushNamed(context, '/Groups')},
+                  child: const Text('Группы'),
+                ),
+                TextButton(
+                  onPressed: () => {Navigator.pushNamed(context, '/Registr')},
+                  child: const Text('Регистрация'),
                 ),
               ],
             ),

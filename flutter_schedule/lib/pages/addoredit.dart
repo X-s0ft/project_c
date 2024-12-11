@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DateData extends StatefulWidget {
-  const DateData({super.key});
+class AddOrEdit extends StatefulWidget {
+  const AddOrEdit({super.key});
 
   @override
-  State<DateData> createState() => _DateDataState();
+  State<AddOrEdit> createState() => _AddOrEditState();
 }
 
-class _DateDataState extends State<DateData> {
+class _AddOrEditState extends State<AddOrEdit> {
   @override
   Widget build(BuildContext context) {
     double screenW = MediaQuery.of(context).size.width;
@@ -17,7 +17,7 @@ class _DateDataState extends State<DateData> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
         title: const Text(
-          'Дата',
+          'Расписание',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
           ),

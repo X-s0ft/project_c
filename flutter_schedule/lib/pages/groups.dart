@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DateData extends StatefulWidget {
-  const DateData({super.key});
+class Groups extends StatefulWidget {
+  const Groups({super.key});
 
   @override
-  State<DateData> createState() => _DateDataState();
+  State<Groups> createState() => _GroupsState();
 }
 
-class _DateDataState extends State<DateData> {
+class _GroupsState extends State<Groups> {
   @override
   Widget build(BuildContext context) {
     double screenW = MediaQuery.of(context).size.width;
@@ -17,7 +17,7 @@ class _DateDataState extends State<DateData> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
         title: const Text(
-          'Дата',
+          'Группы',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
           ),
