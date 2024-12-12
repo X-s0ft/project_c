@@ -18,10 +18,15 @@ final lightTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: const InputDecorationTheme(
-    border: OutlineInputBorder(),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(
+        width: 2,
+      )
+    ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(186, 23, 152, 175),
+        width: 2,
       ),
     ),
     hintStyle: TextStyle(
@@ -37,14 +42,16 @@ final lightTheme = ThemeData(
   textSelectionTheme: const TextSelectionThemeData(
     cursorColor: Colors.black,
   ),
-  textButtonTheme: TextButtonThemeData( 
+  outlinedButtonTheme: OutlinedButtonThemeData(
     style: TextButton.styleFrom(
       textStyle: const TextStyle(
-        fontSize: 20,
-        color: Colors.black,
+        fontSize: 18,
         fontFamily: 'Ubuntu',
       ),
       foregroundColor: Colors.black,
+      side: const BorderSide(
+        width: 1.5,
+      ),
     ),
   ),
 );
