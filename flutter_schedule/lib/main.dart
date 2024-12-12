@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shedule/theme/theme.dart';
 import './routers/router.dart';
 
 
@@ -13,7 +14,7 @@ class MainSchedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: null,
+      theme: lightTheme,
       routes: rout,
       debugShowCheckedModeBanner: false,
     );
