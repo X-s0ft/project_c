@@ -10,20 +10,45 @@ class Registr extends StatefulWidget {
 class _RegistrState extends State<Registr> {
   @override
   Widget build(BuildContext context) {
-    double screenW = MediaQuery.of(context).size.width;
-    double screenH = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
         title: const Text(
           'Регистрация',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
         ),
       ),
-      // body: ,
+      body: Align(
+        alignment: Alignment.center,
+        child: Column(
+          spacing: 20,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 300, //ЗАМЕНИТЬ
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Введите название группы',
+                  counterText: "",
+                ),
+                maxLength: 15,
+              ),
+            ),
+            SizedBox(
+              width: 300, //ЗАМЕНИТЬ
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Введите пароль',
+                  counterText: "",
+                ),
+                maxLength: 15,
+              ),
+            ),
+            OutlinedButton(
+              onPressed: () => {},
+              child: const Text('Зарегестрироваться'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
