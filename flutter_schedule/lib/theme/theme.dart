@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final lightTheme = ThemeData(
+final maintheme = ThemeData(
   textTheme: const TextTheme(
     bodyMedium: TextStyle(
       fontFamily: 'Ubuntu',
@@ -8,6 +8,7 @@ final lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
+  
   appBarTheme: const AppBarTheme(
     centerTitle: true,
     backgroundColor: Color.fromARGB(186, 23, 152, 175),
@@ -17,6 +18,7 @@ final lightTheme = ThemeData(
       fontSize: 20,
     ),
   ),
+
   inputDecorationTheme: const InputDecorationTheme(
     border: OutlineInputBorder(
       borderSide: BorderSide(
@@ -39,9 +41,11 @@ final lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
+
   textSelectionTheme: const TextSelectionThemeData(
     cursorColor: Colors.black,
   ),
+
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: TextButton.styleFrom(
       textStyle: const TextStyle(

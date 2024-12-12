@@ -10,6 +10,7 @@ class Registr extends StatefulWidget {
 class _RegistrState extends State<Registr> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(

@@ -10,9 +10,6 @@ class AddOrEdit extends StatefulWidget {
 class _AddOrEditState extends State<AddOrEdit> {
   @override
   Widget build(BuildContext context) {
-    double screenW = MediaQuery.of(context).size.width;
-    double screenH = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
@@ -22,8 +19,10 @@ class _AddOrEditState extends State<AddOrEdit> {
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
+        
       ),
-      // body: ,
+      
+     
     );
   }
 }
