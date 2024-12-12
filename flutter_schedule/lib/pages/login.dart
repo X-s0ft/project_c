@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 import '../func/getwh.dart';
@@ -10,8 +11,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
+    final docRef = db.collection("Users").doc("Cd3d8ehI2rzXSuQZsRJr");
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        print(data);
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
@@ -40,15 +51,17 @@ class _LoginState extends State<Login> {
                       child: SizedBox(
                         width: getW(context, 0.7),
                         child: TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'Введите Логин', counterText: ''),
+                          decoration: const InputDecoration(
+                              labelText: 'Введите Логин', counterText: ''),
                           maxLength: 15,
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: getH(context, 0.1),),
+                SizedBox(
+                  height: getH(context, 0.1),
+                ),
                 // Пароль
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +79,9 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(height: getH(context, 0.1),),
+                SizedBox(
+                  height: getH(context, 0.1),
+                ),
                 // Вход
                 OutlinedButton(
                   onPressed: () => {dev.log('Войти')},

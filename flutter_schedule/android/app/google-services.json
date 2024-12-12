@@ -5,26 +5,7 @@
     "project_id": "schedule-data-e6166",
     "storage_bucket": "schedule-data-e6166.firebasestorage.app"
   },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:704741265554:android:399ebf1dcb14f93c31164b",
-        "android_client_info": {
-          "package_name": "com.example.flutter"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCRnvpxqUf6d9Pg6Al-oUJ_g3T46R7v-CI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
+  "client": [ 
     {
       "client_info": {
         "mobilesdk_app_id": "1:704741265554:android:f9e38bfe99c5300831164b",
