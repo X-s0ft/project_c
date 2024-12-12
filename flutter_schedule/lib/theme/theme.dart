@@ -26,7 +26,7 @@ final lightTheme = ThemeData(
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(186, 23, 152, 175),
-        width: 2,
+        width: 1.5,
       ),
     ),
     hintStyle: TextStyle(
