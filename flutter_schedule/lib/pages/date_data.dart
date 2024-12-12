@@ -10,8 +10,7 @@ class DateData extends StatefulWidget {
 class _DateDataState extends State<DateData> {
   @override
   Widget build(BuildContext context) {
-    double screenW = MediaQuery.of(context).size.width;
-    double screenH = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       appBar: AppBar(

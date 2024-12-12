@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
+import '../func/getwh.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,9 +12,6 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    double screenW = MediaQuery.of(context).size.width;
-    double screenH = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
@@ -40,16 +38,17 @@ class _LoginState extends State<Login> {
                   children: [
                     Center(
                       child: SizedBox(
-                        width: screenW * 0.7,
+                        width: getW(context, 0.7),
                         child: TextFormField(
                           decoration:
-                              const InputDecoration(labelText: 'Введите Логин'),
+                              const InputDecoration(labelText: 'Введите Логин', counterText: ''),
                           maxLength: 15,
                         ),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: getH(context, 0.1),),
                 // Пароль
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -57,39 +56,42 @@ class _LoginState extends State<Login> {
                   children: [
                     Center(
                       child: SizedBox(
-                        width: screenW * 0.7,
+                        width: getW(context, 0.7),
                         child: TextFormField(
                           decoration: const InputDecoration(
-                              labelText: 'Введите Пароль'),
+                              labelText: 'Введите Пароль', counterText: ''),
                           maxLength: 15,
                         ),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: getH(context, 0.1),),
                 // Вход
-                TextButton(
+                OutlinedButton(
                   onPressed: () => {dev.log('Войти')},
                   child: const Text('Войти'),
                 ),
               ],
             ),
-            SizedBox(height: screenH * 0.3,),
+            SizedBox(
+              height: getH(context, 0.3),
+            ),
             Wrap(
               children: [
-                TextButton(
+                OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/AddOrEdit')},
                   child: const Text('Редактирование/Добавление расписания'),
                 ),
-                TextButton(
+                OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/DateData')},
                   child: const Text('Дата данные'),
                 ),
-                TextButton(
+                OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Groups')},
                   child: const Text('Группы'),
                 ),
-                TextButton(
+                OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Registr')},
                   child: const Text('Регистрация'),
                 ),

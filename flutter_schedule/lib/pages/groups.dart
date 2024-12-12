@@ -10,8 +10,7 @@ class Groups extends StatefulWidget {
 class _GroupsState extends State<Groups> {
   @override
   Widget build(BuildContext context) {
-    double screenW = MediaQuery.of(context).size.width;
-    double screenH = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       appBar: AppBar(
