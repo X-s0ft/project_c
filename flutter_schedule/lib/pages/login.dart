@@ -11,18 +11,31 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final db = FirebaseFirestore.instance;
+  final usersCollections = FirebaseFirestore.instance;
+
+  final TextEditingController _login = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+  void inputlp() {
+    String log = _login.text;
+    String pas = _password.text;
+  
+    dev.log('$log, $pas');
+  }
+
+  @override
+  void dispose() {
+    _login.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final docRef = db.collection("Users").doc("Cd3d8ehI2rzXSuQZsRJr");
-    docRef.get().then(
-      (DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        print(data);
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
+    final res = usersCollections.collection('Users');
+    final res1 = res.where('Login', isEqualTo: 'admin');
+    print(res1);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 46, 200, 227),
@@ -51,6 +64,7 @@ class _LoginState extends State<Login> {
                       child: SizedBox(
                         width: getW(context, 0.7),
                         child: TextFormField(
+                          controller: _login,
                           decoration: const InputDecoration(
                               labelText: 'Введите Логин', counterText: ''),
                           maxLength: 15,
@@ -71,6 +85,8 @@ class _LoginState extends State<Login> {
                       child: SizedBox(
                         width: getW(context, 0.7),
                         child: TextFormField(
+                          controller: _password,
+                          obscureText: true,
                           decoration: const InputDecoration(
                               labelText: 'Введите Пароль', counterText: ''),
                           maxLength: 15,
@@ -82,9 +98,10 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: getH(context, 0.1),
                 ),
+
                 // Вход
                 OutlinedButton(
-                  onPressed: () => {dev.log('Войти')},
+                  onPressed: () => {print('$_login $_password')},
                   child: const Text('Войти'),
                 ),
               ],
@@ -109,6 +126,10 @@ class _LoginState extends State<Login> {
                 OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Registr')},
                   child: const Text('Регистрация'),
+                ),
+                OutlinedButton(
+                  onPressed: () => {inputlp()},
+                  child: const Text('Значения'),
                 ),
               ],
             ),
