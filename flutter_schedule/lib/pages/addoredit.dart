@@ -12,12 +12,10 @@ class _AddOrEditState extends State<AddOrEdit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
+       
         title: const Text(
           'Расписание',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
+         
         ),
         
       ),

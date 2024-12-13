@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as dev;
-import '../func/getwh.dart';
+import 'package:shedule/func/allfunc.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,16 +10,28 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final usersCollections = FirebaseFirestore.instance;
-
   final TextEditingController _login = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  void inputlp() {
-    String log = _login.text;
-    String pas = _password.text;
-  
-    dev.log('$log, $pas');
+  void getdata() async {
+    try {
+      var ref = FirebaseFirestore.instance.collection("Users");
+
+      var getlog = await ref.where("Login", isEqualTo: _login.text).get();
+      var getpas = await ref.where("Password", isEqualTo: _password.text).get();
+      if (getlog.docs.isNotEmpty && getpas.docs.isNotEmpty) {
+        Navigator.pushNamed(context, '/DateData');
+      } else {
+        
+      }
+    } catch (e) { await
+      AlertDialog(
+          title: Text('Произошла ошибка'),
+          content: Text('Вы что-то не првильно заполнили'),
+          actions: [
+            TextButton(onPressed: () {}, child: Text('Ок')),
+          ]);
+    }
   }
 
   @override
@@ -32,18 +43,10 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final res = usersCollections.collection('Users');
-    final res1 = res.where('Login', isEqualTo: 'admin');
-    print(res1);
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
         title: const Text(
           'Главная страница',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
         ),
       ),
       body: Align(
@@ -76,6 +79,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: getH(context, 0.1),
                 ),
+
                 // Пароль
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -95,20 +99,23 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
+
                 SizedBox(
                   height: getH(context, 0.1),
                 ),
 
                 // Вход
                 OutlinedButton(
-                  onPressed: () => {print('$_login $_password')},
+                  onPressed: () => {getdata()},
                   child: const Text('Войти'),
                 ),
               ],
             ),
+
             SizedBox(
               height: getH(context, 0.3),
             ),
+
             Wrap(
               children: [
                 OutlinedButton(
@@ -126,10 +133,6 @@ class _LoginState extends State<Login> {
                 OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Registr')},
                   child: const Text('Регистрация'),
-                ),
-                OutlinedButton(
-                  onPressed: () => {inputlp()},
-                  child: const Text('Значения'),
                 ),
               ],
             ),

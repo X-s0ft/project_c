@@ -14,12 +14,10 @@ class _GroupsState extends State<Groups> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
+       
         title: const Text(
           'Группы',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
+         
         ),
       ),
       // body: ,
