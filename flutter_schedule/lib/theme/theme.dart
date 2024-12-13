@@ -8,7 +8,7 @@ final maintheme = ThemeData(
       color: Colors.black,
     ),
   ),
-  
+
   appBarTheme: const AppBarTheme(
     centerTitle: true,
     backgroundColor: Color.fromARGB(186, 23, 152, 175),
@@ -16,19 +16,19 @@ final maintheme = ThemeData(
       color: Color.fromARGB(255, 255, 255, 255),
       fontFamily: 'Ubuntu',
       fontSize: 20,
+      fontWeight: FontWeight.w700,
     ),
   ),
 
   inputDecorationTheme: const InputDecorationTheme(
-    border: OutlineInputBorder(
-      borderSide: BorderSide(
-        width: 2,
-      )
+    border: UnderlineInputBorder(
+        borderSide: BorderSide(
+      color: Color.fromARGB(186, 23, 152, 175),
+      ),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(186, 23, 152, 175),
-        width: 1.5,
       ),
     ),
     hintStyle: TextStyle(
@@ -43,19 +43,18 @@ final maintheme = ThemeData(
   ),
 
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Colors.black,
+    cursorColor: Color.fromARGB(186, 23, 152, 175),
   ),
 
-  outlinedButtonTheme: OutlinedButtonThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
     style: TextButton.styleFrom(
-      textStyle: const TextStyle(
+      textStyle: TextStyle(
         fontSize: 18,
         fontFamily: 'Ubuntu',
+        fontWeight: FontWeight.w700,
       ),
-      foregroundColor: Colors.black,
-      side: const BorderSide(
-        width: 1.5,
-      ),
+      foregroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(186, 23, 152, 175),
     ),
   ),
 );
