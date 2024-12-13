@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
   void inputlp() {
     String log = _login.text;
     String pas = _password.text;
-  
+
     dev.log('$log, $pas');
   }
 
@@ -38,12 +38,8 @@ class _LoginState extends State<Login> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 200, 227),
         title: const Text(
           'Главная страница',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
         ),
       ),
       body: Align(
@@ -73,9 +69,7 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getH(context, 0.1),
-                ),
+
                 // Пароль
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -95,12 +89,9 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getH(context, 0.1),
-                ),
 
                 // Вход
-                OutlinedButton(
+                ElevatedButton(
                   onPressed: () => {print('$_login $_password')},
                   child: const Text('Войти'),
                 ),
@@ -111,23 +102,23 @@ class _LoginState extends State<Login> {
             ),
             Wrap(
               children: [
-                OutlinedButton(
+                TextButton(
                   onPressed: () => {Navigator.pushNamed(context, '/AddOrEdit')},
                   child: const Text('Редактирование/Добавление расписания'),
                 ),
-                OutlinedButton(
+                TextButton(
                   onPressed: () => {Navigator.pushNamed(context, '/DateData')},
                   child: const Text('Дата данные'),
                 ),
-                OutlinedButton(
+                TextButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Groups')},
                   child: const Text('Группы'),
                 ),
-                OutlinedButton(
+                TextButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Registr')},
                   child: const Text('Регистрация'),
                 ),
-                OutlinedButton(
+                TextButton(
                   onPressed: () => {inputlp()},
                   child: const Text('Значения'),
                 ),

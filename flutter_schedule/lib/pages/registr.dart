@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shedule/pages/auth.dart';
+import 'package:shedule/pages/logintest.dart';
 
 class Registr extends StatefulWidget {
   const Registr({super.key});
@@ -52,7 +53,19 @@ class _RegistrState extends State<Registr> {
   Widget _submitButton() {
     return ElevatedButton(
       onPressed: createUserWithEmailAndPassword,
-      child: Text('Зарегестрировать'),
+      child: Text('Зарегестрироваться'),
+    );
+  }
+
+  Widget _logpage() {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Logintest()),
+        );
+      },
+      child: Text('Уже есть аккаунт'),
     );
   }
 
@@ -74,6 +87,7 @@ class _RegistrState extends State<Registr> {
               _entryField('password', _controllerPassword),
               _errorMessage(),
               _submitButton(),
+              _logpage(),
             ],
           ),
         ),
