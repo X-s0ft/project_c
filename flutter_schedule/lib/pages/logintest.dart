@@ -30,7 +30,7 @@ class _LogintestState extends State<Logintest> {
   }
 
   Widget _title() {
-    return const Text('Вход');
+    return const Text('Авторизация');
   }
 
   Widget _entryField(
