@@ -45,6 +45,20 @@ class _LogintestState extends State<Logintest> {
     );
   }
 
+    Widget _entryFieldPass(
+    String title,
+    TextEditingController controller,
+  ) {
+    return TextField(
+      controller: controller,
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: title,
+      ),
+    );
+  }
+
+
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : '$errorMessage');
   }
@@ -83,7 +97,7 @@ class _LogintestState extends State<Logintest> {
             spacing: 20,
             children: [
               _entryField('email', _controllerEmail),
-              _entryField('password', _controllerPassword),
+              _entryFieldPass('password', _controllerPassword),
               _errorMessage(),
               _submitButton(),
               _regpage(),
