@@ -119,12 +119,8 @@ class _LoginState extends State<Login> {
             Wrap(
               children: [
                 OutlinedButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/AddOrEdit')},
-                  child: const Text('Редактирование/Добавление расписания'),
-                ),
-                OutlinedButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/DateData')},
-                  child: const Text('Дата данные'),
+                  onPressed: () => {Navigator.pushNamed(context, '/AddSchedule')},
+                  child: const Text('Добавление расписания'),
                 ),
                 OutlinedButton(
                   onPressed: () => {Navigator.pushNamed(context, '/Groups')},

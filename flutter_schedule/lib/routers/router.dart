@@ -6,4 +6,5 @@ final rout = {
   '/Registr':   (context) => const Registr(),
   '/Groups':    (context) => const Groups(),
   '/AddOrEdit': (context) => const AddOrEdit(),
+  '/AddSchedule': (context) => const AddSchedule(),
 };
