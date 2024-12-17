@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class DateData extends StatefulWidget {
-  const DateData({super.key});
+class Groups extends StatefulWidget {
+  const Groups({super.key});
 
   @override
-  State<DateData> createState() => _DateDataState();
+  State<Groups> createState() => _GroupsState();
 }
 
-class _DateDataState extends State<DateData> {
+class _GroupsState extends State<Groups> {
   @override
   Widget build(BuildContext context) {
 
 
     return Scaffold(
       appBar: AppBar(
-      
+       
         title: const Text(
-          'Дата',
+          'Группы',
          
         ),
       ),
