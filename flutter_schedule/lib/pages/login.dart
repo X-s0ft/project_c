@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shedule/func/allfunc.dart';
+import '../func/allfunc.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -15,17 +15,15 @@ class _LoginState extends State<Login> {
 
   void getdata() async {
     try {
-      var ref = FirebaseFirestore.instance.collection("Users");
+      var ref = FirebaseFirestore.instance.collection(_login.text);
 
       var getlog = await ref.where("Login", isEqualTo: _login.text).get();
       var getpas = await ref.where("Password", isEqualTo: _password.text).get();
       if (getlog.docs.isNotEmpty && getpas.docs.isNotEmpty) {
         Navigator.pushNamed(context, '/DateData');
-      } else {
-        
-      }
-    } catch (e) { await
-      AlertDialog(
+      } else {}
+    } catch (e) {
+      await AlertDialog(
           title: Text('Произошла ошибка'),
           content: Text('Вы что-то не првильно заполнили'),
           actions: [
@@ -119,7 +117,8 @@ class _LoginState extends State<Login> {
             Wrap(
               children: [
                 OutlinedButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/AddSchedule')},
+                  onPressed: () =>
+                      {Navigator.pushNamed(context, '/AddSchedule')},
                   child: const Text('Добавление расписания'),
                 ),
                 OutlinedButton(

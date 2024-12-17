@@ -14,7 +14,7 @@ class _RegistrState extends State<Registr> {
   final _password = TextEditingController();
 
   void createuser() async {
-    var ref = FirebaseFirestore.instance.collection("Users");
+    var ref = FirebaseFirestore.instance.collection(_login.text);
 
     ref.add(
         {"Login": _login.text, "Password": _password.text, "IsAdmin": false});
