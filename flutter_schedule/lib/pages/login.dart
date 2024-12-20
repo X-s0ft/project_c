@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as dev;
-import '../func/getwh.dart';
+import 'package:shedule/pages/allpages.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,120 +10,99 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final usersCollections = FirebaseFirestore.instance;
+  String? errorMessage = '';
+  bool isLogin = true;
 
-  final TextEditingController _login = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
 
-  void inputlp() {
-    String log = _login.text;
-    String pas = _password.text;
-
-    dev.log('$log, $pas');
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+        email: _controllerEmail.text,
+        password: _controllerPassword.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
   }
 
-  @override
-  void dispose() {
-    _login.dispose();
-    _password.dispose();
-    super.dispose();
+  Widget _title() {
+    return const Text('Авторизация');
+  }
+
+  Widget _entryField(
+    String title,
+    TextEditingController controller,
+  ) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: title,
+      ),
+    );
+  }
+
+    Widget _entryFieldPass(
+    String title,
+    TextEditingController controller,
+  ) {
+    return TextField(
+      controller: controller,
+      obscureText: true,
+      decoration: InputDecoration(
+        labelText: title,
+      ),
+    );
+  }
+
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : '$errorMessage');
+  }
+
+  Widget _submitButton() {
+    return ElevatedButton(
+      onPressed: signInWithEmailAndPassword,
+      child: Text('Войти'),
+    );
+  }
+
+  Widget _regpage() {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Registr()),
+        );
+      },
+      child: Text('Зарегестрироваться'),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final res = usersCollections.collection('Users');
-    final res1 = res.where('Login', isEqualTo: 'admin');
-    print(res1);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Главная страница',
-        ),
+        title: _title(),
       ),
-      body: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Блок с полями для ввода
-            Column(
-              children: [
-                // Логин
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        width: getW(context, 0.7),
-                        child: TextFormField(
-                          controller: _login,
-                          decoration: const InputDecoration(
-                              labelText: 'Введите Логин', counterText: ''),
-                          maxLength: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                // Пароль
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        width: getW(context, 0.7),
-                        child: TextFormField(
-                          controller: _password,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                              labelText: 'Введите Пароль', counterText: ''),
-                          maxLength: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                // Вход
-                ElevatedButton(
-                  onPressed: () => {print('$_login $_password')},
-                  child: const Text('Войти'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: getH(context, 0.3),
-            ),
-            Wrap(
-              children: [
-                TextButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/AddOrEdit')},
-                  child: const Text('Редактирование/Добавление расписания'),
-                ),
-                TextButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/DateData')},
-                  child: const Text('Дата данные'),
-                ),
-                TextButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/Groups')},
-                  child: const Text('Группы'),
-                ),
-                TextButton(
-                  onPressed: () => {Navigator.pushNamed(context, '/Registr')},
-                  child: const Text('Регистрация'),
-                ),
-                TextButton(
-                  onPressed: () => {inputlp()},
-                  child: const Text('Значения'),
-                ),
-              ],
-            ),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 20,
+            children: [
+              _entryField('email', _controllerEmail),
+              _entryFieldPass('password', _controllerPassword),
+              _errorMessage(),
+              _submitButton(),
+              _regpage(),
+            ],
+          ),
         ),
       ),
     );

@@ -63,4 +63,8 @@ final maintheme = ThemeData(
       foregroundColor: Color.fromARGB(186, 23, 152, 175),
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: Color.fromARGB(186, 23, 152, 175),
+    foregroundColor: Colors.white,
+  ),
 );

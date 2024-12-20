@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shedule/pages/auth.dart';
-import 'package:shedule/pages/logintest.dart';
+import 'package:shedule/pages/login.dart';
 
 class Registr extends StatefulWidget {
   const Registr({super.key});
@@ -62,7 +62,7 @@ class _RegistrState extends State<Registr> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Logintest()),
+          MaterialPageRoute(builder: (context) => Login()),
         );
       },
       child: Text('Уже есть аккаунт'),

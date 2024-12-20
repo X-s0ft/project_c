@@ -1,6 +1,5 @@
 import 'package:shedule/pages/allpages.dart';
 import 'package:flutter/material.dart';
-import 'package:shedule/pages/logintest.dart';
 
 
 class WidgetTree extends StatefulWidget {
@@ -19,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if (snapshot.hasData) {
           return DateData();
         } else {
-          return Logintest();
+          return Login();
         }
       },
     );
