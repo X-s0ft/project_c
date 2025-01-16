@@ -9,7 +9,7 @@ final regpassword = TextEditingController();
 
 void createuserF(BuildContext context) async {
   try {
-    var ref = FirebaseFirestore.instance.collection(reglogin.text);
+    var ref = FirebaseFirestore.instance.collection('users');
     ref.add({
       "Login": reglogin.text,
       "Password": regpassword.text,
@@ -27,8 +27,7 @@ void createuserF(BuildContext context) async {
 
 void loginF(BuildContext context) async {
   try {
-    var ref = FirebaseFirestore.instance.collection(login.text);
-
+    var ref = FirebaseFirestore.instance.collection('users');
     var getlog = await ref.where("Login", isEqualTo: login.text).get();
     var getpas = await ref.where("Password", isEqualTo: password.text).get();
 

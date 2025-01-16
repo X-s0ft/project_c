@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class DateData extends StatefulWidget {
   const DateData({super.key});
 
@@ -12,32 +11,9 @@ class DateData extends StatefulWidget {
 class _DateDataState extends State<DateData> {
   @override
   Widget build(BuildContext context) {
-    String argument = ModalRoute.of(context)!.settings.arguments
-        as String; // Аргумент на профиль с прошлой страницы
 
-    void getdate_data() async {
-      try {
-        CollectionReference ref =
-            FirebaseFirestore.instance.collection(argument);
-
-        QuerySnapshot collref = await ref.get();
-
-        for (DocumentSnapshot doc in collref.docs) {
-          var datedoc = doc['Date'];
-          var scheduledoc = doc['Schedule'];
-
-          print('$datedoc, $scheduledoc');
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Ой, что-то пошло не так'),
-            duration: Duration(seconds: 3),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
+    String argument = ModalRoute.of(context)!.settings.arguments as String;
+    final ref = FirebaseFirestore.instance.collection(argument).snapshots();
 
     return Scaffold(
       appBar: AppBar(
@@ -50,11 +26,27 @@ class _DateDataState extends State<DateData> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextButton(
-                onPressed: () {
-                  getdate_data();
-                },
-                child: Text('Нажми протестить'))
+            Scrollbar(
+              child: Column(
+                children: [
+                  StreamBuilder(
+                    stream: ref,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return const Text('Проблемы с подключением');
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text('Загрузка...');
+                      }
+
+                      var docs = snapshot.data!.docs;
+                      return Text('${docs.length}');
+                     
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
