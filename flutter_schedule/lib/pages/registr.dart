@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shedule/func/getwh.dart';
+import '../func/allfunc.dart';
 
 class Registr extends StatefulWidget {
   const Registr({super.key});
@@ -10,20 +9,10 @@ class Registr extends StatefulWidget {
 }
 
 class _RegistrState extends State<Registr> {
-  final _login = TextEditingController();
-  final _password = TextEditingController();
-
-  void createuser() async {
-    var ref = FirebaseFirestore.instance.collection(_login.text);
-
-    ref.add(
-        {"Login": _login.text, "Password": _password.text, "IsAdmin": false});
-  }
-
   @override
   void dispose() {
-    _login.dispose();
-    _password.dispose();
+    reglogin.dispose();
+    regpassword.dispose();
     super.dispose();
   }
 
@@ -36,7 +25,6 @@ class _RegistrState extends State<Registr> {
         ),
       ),
       body: Align(
-        alignment: Alignment.center,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,7 +41,7 @@ class _RegistrState extends State<Registr> {
                         child: SizedBox(
                           width: getW(context, 0.7),
                           child: TextFormField(
-                            controller: _login,
+                            controller: reglogin,
                             decoration: const InputDecoration(
                                 labelText: 'Введите Группу', counterText: ''),
                             maxLength: 15,
@@ -75,8 +63,7 @@ class _RegistrState extends State<Registr> {
                         child: SizedBox(
                           width: getW(context, 0.7),
                           child: TextFormField(
-                            controller: _password,
-                            obscureText: true,
+                            controller: regpassword,
                             decoration: const InputDecoration(
                                 labelText: 'Введите Пароль', counterText: ''),
                             maxLength: 15,
@@ -92,7 +79,27 @@ class _RegistrState extends State<Registr> {
 
                   // Вход
                   OutlinedButton(
-                    onPressed: () => {createuser()},
+                    onPressed: () {
+                      if (reglogin.text.isNotEmpty &&
+                          regpassword.text.isNotEmpty) {
+                        createuserF(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Пользователь успешно создан'),
+                            duration: Duration(seconds: 3),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Вы не заполнили поля'),
+                            duration: Duration(seconds: 3),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    },
                     child: const Text('Создать пользователя'),
                   ),
                 ],
